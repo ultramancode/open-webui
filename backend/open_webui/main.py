@@ -1726,6 +1726,7 @@ async def chat_completion(
             'message_id': form_data.pop('id', None),
             'parent_message': form_data.pop('parent_message', None),
             'parent_message_id': form_data.pop('parent_id', None),
+            'mcp_prompt_selection': form_data.pop('mcp_prompt_selection', None),
             'session_id': form_data.pop('session_id', None),
             'filter_ids': form_data.pop('filter_ids', []),
             'tool_ids': form_data.get('tool_ids', None),
