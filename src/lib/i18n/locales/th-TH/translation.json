@@ -1237,7 +1237,6 @@
 	"May": "พฤษภาคม",
 	"MBR": "",
 	"MCP": "MCP",
-	"MCP Prompt": "",
 	"MCP Prompts": "",
 	"MCP support is experimental and its specification changes often, which can lead to incompatibilities. OpenAPI specification support is directly maintained by the Open WebUI team, making it the more reliable option for compatibility.": "การรองรับ MCP ยังเป็นแบบทดลองและมีการเปลี่ยนแปลงสเปกบ่อยครั้ง ซึ่งอาจทำให้เกิดปัญหาความไม่เข้ากันได้ การรองรับสเปก OpenAPI นั้นดูแลโดยทีม Open WebUI โดยตรง จึงเป็นตัวเลือกที่เชื่อถือได้มากกว่าในด้านความเข้ากันได้",
 	"Medium": "ปานกลาง",

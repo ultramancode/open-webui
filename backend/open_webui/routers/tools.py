@@ -39,6 +39,7 @@ from open_webui.utils.access_control import (
 from open_webui.utils.tools import get_tool_servers
 from open_webui.utils.mcp.client import MCPClient
 from open_webui.utils.headers import include_user_info_headers
+from open_webui.utils.middleware import get_mcp_server_connection
 
 from open_webui.config import CACHE_DIR, BYPASS_ADMIN_ACCESS_CONTROL
 from open_webui.constants import ERROR_MESSAGES
@@ -245,16 +246,7 @@ async def get_tool_list(user=Depends(get_verified_user), db: Session = Depends(g
 
 @router.get('/mcp/{server_id}/prompts', response_model=MCPPromptListResponse)
 async def get_mcp_prompt_list(request: Request, server_id: str, user=Depends(get_verified_user)):
-    mcp_server_connection = next(
-        (
-            server_connection
-            for server_connection in request.app.state.config.TOOL_SERVER_CONNECTIONS
-            if server_connection.get('type', '') == 'mcp'
-            and server_connection.get('config', {}).get('enable')
-            and server_connection.get('info', {}).get('id') == server_id
-        ),
-        None,
-    )
+    mcp_server_connection = get_mcp_server_connection(request, server_id, enabled_only=True)
 
     if not mcp_server_connection:
         raise HTTPException(

@@ -1238,7 +1238,6 @@
 	"May": "Bealtaine",
 	"MBR": "MBR",
 	"MCP": "MCP",
-	"MCP Prompt": "",
 	"MCP Prompts": "",
 	"MCP support is experimental and its specification changes often, which can lead to incompatibilities. OpenAPI specification support is directly maintained by the Open WebUI team, making it the more reliable option for compatibility.": "Is turgnamhach tacaíocht MCP agus athraítear a shonraíocht go minic, rud a d’fhéadfadh neamh-chomhoiriúnachtaí a bheith mar thoradh air. Déanann foireann Open WebUI cothabháil dhíreach ar thacaíocht sonraíochta OpenAPI, rud a fhágann gurb é an rogha is iontaofa é le haghaidh comhoiriúnachta.",
 	"Medium": "Meánach",

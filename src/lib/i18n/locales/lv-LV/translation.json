@@ -1239,7 +1239,6 @@
 	"May": "Maijs",
 	"MBR": "MBR",
 	"MCP": "MCP",
-	"MCP Prompt": "",
 	"MCP Prompts": "",
 	"MCP support is experimental and its specification changes often, which can lead to incompatibilities. OpenAPI specification support is directly maintained by the Open WebUI team, making it the more reliable option for compatibility.": "MCP atbalsts ir eksperimentāls un tā specifikācija bieži mainās, kas var novest pie nesaderības. OpenAPI specifikācijas atbalstu tieši uztur Open WebUI komanda, padarot to par uzticamāku opciju saderībai.",
 	"Medium": "Vidējs",

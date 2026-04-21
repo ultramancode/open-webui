@@ -57,7 +57,12 @@
 	import { deleteFileById } from '$lib/apis/files';
 	import { getChatById } from '$lib/apis/chats';
 	import { getSessionUser } from '$lib/apis/auths';
-	import { getMCPPrompts, getTools, type MCPPrompt } from '$lib/apis/tools';
+	import {
+		getMCPPrompts,
+		getTools,
+		type MCPPrompt,
+		type MCPPromptSelection
+	} from '$lib/apis/tools';
 
 	import { WEBUI_BASE_URL, WEBUI_API_BASE_URL, PASTED_TEXT_CHARACTER_LIMIT } from '$lib/constants';
 	import { getOAuthClientAuthorizationUrl } from '$lib/apis/configs';
@@ -146,15 +151,6 @@
 
 	let showTerminalMenu = false;
 
-	type MCPPromptSelection = {
-		serverId: string;
-		serverName: string;
-		name: string;
-		title?: string;
-		arguments: Record<string, string>;
-		mode?: 'once' | 'chat';
-	};
-
 	type MCPPromptVariableMap = Record<
 		string,
 		{
@@ -163,7 +159,12 @@
 		}
 	>;
 
-	export let messageQueue: { id: string; prompt: string; files: any[] }[] = [];
+	export let messageQueue: {
+		id: string;
+		prompt: string;
+		files: any[];
+		mcpPromptSelection: MCPPromptSelection | null;
+	}[] = [];
 	export let onQueueSendNow: (id: string) => void = () => {};
 	export let onQueueEdit: (id: string) => void = () => {};
 	export let onQueueDelete: (id: string) => void = () => {};
@@ -372,13 +373,6 @@
 		);
 	};
 
-	const ensureMcpPromptToolSelected = (serverId: string) => {
-		const toolId = `server:mcp:${serverId}`;
-		if (!selectedToolIds.includes(toolId)) {
-			selectedToolIds = [...selectedToolIds, toolId];
-		}
-	};
-
 	const createMcpPromptSelection = (
 		prompt: MCPPrompt,
 		argumentsMap: Record<string, string> = {},
@@ -398,7 +392,6 @@
 		prompt: MCPPrompt,
 		argumentsMap: Record<string, string> = {}
 	) => {
-		ensureMcpPromptToolSelected(mcpPromptServerId);
 		pendingMcpPromptSelection = createMcpPromptSelection(prompt, argumentsMap, 'once');
 		showMcpPromptPickerModal = false;
 		toast.success(
@@ -412,7 +405,6 @@
 		prompt: MCPPrompt,
 		argumentsMap: Record<string, string> = {}
 	) => {
-		ensureMcpPromptToolSelected(mcpPromptServerId);
 		pendingMcpPromptSelection = null;
 		activeChatMcpPromptSelection = createMcpPromptSelection(prompt, argumentsMap, 'chat');
 		showMcpPromptPickerModal = false;
